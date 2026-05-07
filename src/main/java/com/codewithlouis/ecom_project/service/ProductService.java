@@ -5,6 +5,7 @@ import com.codewithlouis.ecom_project.repository.ProductRepo;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,8 +19,13 @@ public class ProductService {
     }
 
 
-    public void addProducts(Product product) {
-        productRepo.save(product);
+    public Product addProducts(Product product, MultipartFile imageFile) throws Exception
+    {
+        product.setImageName(imageFile.getOriginalFilename());
+        product.setImageType(imageFile.getContentType());
+        product.setImageData(imageFile.getBytes());
+        return productRepo.save(product);
+
     }
     public void updateProducts(Product product) {
         productRepo.save(product);

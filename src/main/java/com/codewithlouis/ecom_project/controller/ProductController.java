@@ -38,7 +38,7 @@ public class ProductController {
        return new ResponseEntity<>(productService.getProductById(id),HttpStatus.OK);
         else
             return new ResponseEntity<>( HttpStatus.NOT_FOUND);
-    }
+    }//
 
     @PostMapping("/products")
     public ResponseEntity<?> addProduct(@ModelAttribute Product product, @RequestPart MultipartFile imageFile){
